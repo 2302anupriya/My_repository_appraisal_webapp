@@ -1,0 +1,71 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+ <web-app>
+ 
+  <display-name>appraisal-web-app</display-name> 
+    
+  <context-param>
+        <param-name>log4j-config-location</param-name>
+        <param-value>WEB-INF/log4j.properties</param-value>
+    </context-param>
+    
+
+     <!--  <context-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+      </context-param> -->
+      
+ <!--   <listener>
+      <listener-class>
+         org.springframework.web.context.ContextLoaderListener
+      </listener-class>
+   </listener>
+       -->
+        <servlet>
+      <servlet-name>dispatcher</servlet-name>
+      <servlet-class>
+         org.springframework.web.servlet.DispatcherServlet
+      </servlet-class>
+            <load-on-startup>1</load-on-startup>
+ </servlet>
+
+ 
+<!-- <servlet>  
+  <servlet-name>AppraisalServlet</servlet-name>  
+  <servlet-class>com.tricon.appraisal.controller.AppraisalController</servlet-class>   
+  </servlet>
+<servlet>
+	<servlet-name>FetchServlet</servlet-name>
+	<display-name>FetchController</display-name>
+	<description></description>
+	<servlet-class>com.tricon.appraisal.controller.FetchController</servlet-class>
+</servlet> -->
+<!-- <servlet>
+	<servlet-name>LoginController</servlet-name>
+	<display-name>LoginController</display-name>
+	<description></description>
+	<servlet-class>com.tricon.appraisal.controller.LoginController</servlet-class>
+</servlet>
+ -->
+<!-- <servlet-mapping>  
+  <servlet-name>AppraisalServlet</servlet-name>
+  <url-pattern>/AppraisalController</url-pattern>   
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>FetchServlet</servlet-name>
+  	<url-pattern>/FetchController</url-pattern>
+  </servlet-mapping> -->
+<!--   <servlet-mapping>
+  	<servlet-name>LoginController</servlet-name>
+  	<url-pattern>/LoginController</url-pattern>
+  </servlet-mapping> -->
+    <servlet-mapping>
+  	<servlet-name>dispatcher</servlet-name>
+  	<url-pattern>/</url-pattern>
+ 
+  </servlet-mapping>
+
+
+</web-app>

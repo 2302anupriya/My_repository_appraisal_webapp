@@ -1,0 +1,54 @@
+.select{
+margin-top:300px
+
+}
+
+table {
+    border-collapse: collapse;
+     width: 40%;
+}
+
+table, td, th {
+    border: 2px solid black;
+}
+.EmpMgr tr, .EmpMgr th:first-child {
+    font-style: italic;
+}
+.Mgr {
+    position: relative;
+	top: -150px;
+	float: right;
+}
+.EmpMgr td:first-child {
+    width: 180px;
+    background-color: #6666ff;
+}
+.EmpMgr td.white, .dropdown {
+  color:#FFFFFF;
+  }
+
+.EmpMgr .center-align{
+    text-align: center;
+}
+.EmpMgr tr, .EmpMgr td:first-child{
+    border: none;
+	font-style: italic;
+}
+.EmpMgr .left-align {
+    text-align: left;
+}
+
+.mainTable tr, .mainTable td {
+     height:26px;
+}
+.mainTable {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top:200px
+}
+.dropdown
+{
+background-color: #6666ff;
+width:180px;
+
+}
