@@ -238,7 +238,7 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 		return empList;
 	}
 
-	// view the manager personal appraisal detail
+	// view the personal appraisal detail for a manager
 
 	@Override
 	public List<Appraisal> viewPersonalAppraisalDetailsByEmpId(int empid)
