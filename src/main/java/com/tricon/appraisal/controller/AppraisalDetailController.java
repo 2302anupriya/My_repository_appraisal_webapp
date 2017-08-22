@@ -134,7 +134,7 @@ public class AppraisalDetailController {
 					yearFromValue, associateId, appraisalcycle);
 			Employee employee = appraisalDetailService.viewEmployeeDetails(
 					yearFromValue, associateId);
-			model.addAttribute("appList",appraisalList);
+			model.addAttribute("appList", appraisalList);
 			session.setAttribute("appList", appraisalList);
 			model.addAttribute("emp", employee);
 			model.addAttribute("mgr", manager);
@@ -230,8 +230,10 @@ public class AppraisalDetailController {
 					yearFromValue, empid, appraisalcycle);
 			Employee employee = appraisalDetailService.viewEmployeeDetails(
 					yearFromValue, empid);
-			session.setAttribute("employee", employee);
-			session.setAttribute("manager", manager);
+			/*
+			 * session.setAttribute("employee", employee);
+			 * session.setAttribute("manager", manager);
+			 */
 			/* session.setAttribute("appList", appraisalList); */
 			/* model.addAttribute("appList", appraisalList); */
 			model.addAttribute("emp", employee);
@@ -251,11 +253,6 @@ public class AppraisalDetailController {
 			@ModelAttribute("appraisal") Appraisal appraisal,
 			@ModelAttribute("employee") Employee employee, Model model,
 			HttpSession session) throws IOException {
-
-		System.out.println("appraisal data+++++++++++++++++++++++++++++++"
-				+ appraisal);
-		System.out.println("appraisal data+++++++++++++++++++++++++++++++"
-				+ appraisal.getCyclePeriodFrom());
 
 		logger.info("handling the submit request");
 		/*
@@ -285,8 +282,7 @@ public class AppraisalDetailController {
 		 * request,
 		 */
 		try {
-			
-			System.out.println("hi inside the controller"+employee.getEmpName());
+
 			/*
 			 * Employee employee=(Employee) session.getAttribute("employee");
 			 * Manager manager=(Manager) session.getAttribute("manager");

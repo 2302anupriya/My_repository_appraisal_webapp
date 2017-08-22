@@ -103,7 +103,6 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				 * app.setCycleProjectH2(rs.getString("cycle_project")); }
 				 */
 				appList.add(app);
-				System.out.println("############" + appList);
 
 			}
 
@@ -141,7 +140,6 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 			String query = "SELECT empid,fname from employee where empid = (SELECT distinct(mgr_id) from appraisal_cycle where empid="
 					+ empid + " and appraisal_cycle='" + appraisalcycle + "')";
 
-			System.out.println("Inside view manager detail");
 			/*
 			 * String query =
 			 * "(SELECT emp.empid, emp.fname, ac.appraisal_cycle from employee emp, appraisal_cycle ac where emp.empid = ac.empid and emp.empid =  (SELECT mgrid from employee where empid = "
@@ -149,7 +147,6 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 			 */
 
 			rs = statement.executeQuery(query);
-			System.out.println(rs);
 			while (rs.next()) {
 				mgr = new Manager();
 
@@ -228,7 +225,6 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				int emp_id = rs.getInt("empid");
 				// emp.setEmpName(rs.getString("fname"));
 				empList.add(emp_id);
-				System.out.println("inside view associate detail:" + empList);
 			}
 
 		} catch (SQLException e) {
@@ -252,7 +248,6 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 		// List<Manager> mgrList = new ArrayList<Manager>();
 		Connection connection = ConnectionFactory.getConnection();
 		try {
-			System.out.println("inside the personal details in DAO layer");
 			statement = connection.createStatement();
 			String query = "select appraisal_cycle, cycle_period_from, cycle_period_to from appraisal_cycle where empid ="
 					+ empid;
@@ -282,9 +277,6 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 
 				String cyclePeriodMonth = (cyclePeriodFrom.substring(3))
 						.concat(" to ").concat(cyclePeriodTo.substring(3));
-				System.out
-						.println("Getting the Cycle Period Months : +++++++++++++++++ "
-								+ cyclePeriodMonth);
 				/* cyclePeriodList.add(cyclePeriod); */
 
 				// retrieval of cycle_month ends here
@@ -295,7 +287,6 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				/* app.setCyclePeriodFrom(cycle_Year); */
 				app.setCycleMonth(cyclePeriodMonth);
 				appList.add(app);
-				System.out.println("inside view Personal detail:" + appList);
 			}
 
 		} catch (SQLException e) {
