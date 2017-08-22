@@ -14,10 +14,6 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
-
-
-
-
 /*import com.mysql.jdbc.ResultSet;*/
 //import com.mysql.jdbc.Statement;
 import com.tricon.appraisal.dao.IAppraisalDao;
@@ -37,51 +33,37 @@ public class AppraisalDao implements IAppraisalDao {
 		System.out.println("current date is given by" + date);
 		return date;
 	}
-	
-
-	
 
 	@Override
-	public void insertAppraisalCycleDetails(Appraisal app, String empName) throws SQLException,
-			ClassNotFoundException, IOException, ParseException {
+	public void insertAppraisalCycleDetails(Appraisal app, String empName)
+			throws SQLException, ClassNotFoundException, IOException,
+			ParseException {
 		Connection connection = ConnectionFactory.getConnection();
 		logger.info("inserting appraisal data into appraisal cycle table of the database");
 		PreparedStatement ps = null;
 		Statement statement = null;
 		try {
-			
+
 			ps = connection
 					.prepareStatement(
 							"INSERT INTO Appraisal_Cycle(appraisal_cycle, cycle_period_from, cycle_period_to, cycle_project, mgr_id, created_on, updated_on, created_by, updated_by, empid, designation) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, app.getAppraisalCycle());
-			//ps.setString(2, app.getCyclePeriodFrom());
-			
+			// below code sets the cycle_period dates in dd-mm-yyyy format
 			String cycle_Period_From = app.getCyclePeriodFrom();
-			System.out.println(cycle_Period_From);
-			String cycle_period_to  = app.getCyclePeriodTo();
-			System.out.println(cycle_period_to);
-			//set the cycle_period dates in dd-mm-yyyy format
-			
+			String cycle_period_to = app.getCyclePeriodTo();
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 					"yyyy-MM-dd");
 			Date date_Cycle_Period_From = simpleDateFormat
 					.parse(cycle_Period_From);
-			Date date_Cycle_Period_To = simpleDateFormat
-					.parse(cycle_period_to);
+			Date date_Cycle_Period_To = simpleDateFormat.parse(cycle_period_to);
 			String dateTargetPattern = "dd-MM-yyyy";
 			simpleDateFormat.applyPattern(dateTargetPattern);
 			String cyclePeriodFrom = simpleDateFormat
 					.format(date_Cycle_Period_From);
 			String cyclePeriodTo = simpleDateFormat
 					.format(date_Cycle_Period_To);
-			
-			System.out.println("Hi.........."+cyclePeriodFrom);
-			System.out.println("Hi.........."+cyclePeriodTo);
-			
-
-			
 			ps.setString(2, cyclePeriodFrom);
 			ps.setString(3, cyclePeriodTo);
 			ps.setString(4, app.getCycleProject());
@@ -95,7 +77,6 @@ public class AppraisalDao implements IAppraisalDao {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			// logger error
 			throw e;
 		} finally {
 			try {
@@ -122,45 +103,48 @@ public class AppraisalDao implements IAppraisalDao {
 		Statement statement = null;
 		ResultSet rs = null;
 		int app_cycle_id = 0;
-		
-		
-		//String sql = "select ac.id from appraisal_cycle ac where ac.cycle_period_from='"+app.getCyclePeriodFrom()+"' and empid=" + app.getEmpId()";
 
-	
-		//String sql = "select ac.id from appraisal_cycle ac where ac.empid = "+app.getEmpId();
-		
-		/*String sql = "select ac.id from appraisal_cycle ac where ac.cycle_period_from='"+app.getCyclePeriodFrom()+"' and empid=" + app.getEmpId()";
-*/		
+		// String sql =
+		// "select ac.id from appraisal_cycle ac where ac.cycle_period_from='"+app.getCyclePeriodFrom()+"' and empid="
+		// + app.getEmpId()";
+
+		// String sql =
+		// "select ac.id from appraisal_cycle ac where ac.empid = "+app.getEmpId();
+
+		/*
+		 * String sql =
+		 * "select ac.id from appraisal_cycle ac where ac.cycle_period_from='"
+		 * +app.getCyclePeriodFrom()+"' and empid=" + app.getEmpId()";
+		 */
 		String cycle_Period_From = app.getCyclePeriodFrom();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyy-MM-dd");
-		Date date_Cycle_Period_From = simpleDateFormat
-				.parse(cycle_Period_From);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date_Cycle_Period_From = simpleDateFormat.parse(cycle_Period_From);
 		String dateTargetPattern = "dd-MM-yyyy";
 		simpleDateFormat.applyPattern(dateTargetPattern);
 		String cyclePeriodFrom = simpleDateFormat
 				.format(date_Cycle_Period_From);
 		String appCycle = app.getAppraisalCycle();
-		
+
 		try {
 			statement = connection.createStatement();
-			
-			String sql = "SELECT ac.id from appraisal_cycle ac where ac.cycle_period_from='"+cyclePeriodFrom+"' and ac.appraisal_cycle='"+appCycle+"' and empid=" + app.getEmpId(); 
+
+			String sql = "SELECT ac.id from appraisal_cycle ac where ac.cycle_period_from='"
+					+ cyclePeriodFrom
+					+ "' and ac.appraisal_cycle='"
+					+ appCycle
+					+ "' and empid=" + app.getEmpId();
 			rs = statement.executeQuery(sql);
 			while (rs.next()) {
-			
-		     app_cycle_id = (rs.getInt("id"));
-		     
+
+				app_cycle_id = (rs.getInt("id"));
+
 			}
-			System.out.println("dhdsghdghjdfghjdfsghjdfsghj"+app_cycle_id);
-			
-			
 			ps = connection
 					.prepareStatement(
 							"INSERT INTO Appraisal_Detail(appraisal_cycle_id, appraisal_cycle, sno, category, objectives, remark, weightage, training_needs, achievement_self_assesment, Mgr_assesment, mgr_comment, performance_rating, final_assesment) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 
-			ps.setInt(1,app_cycle_id);
+			ps.setInt(1, app_cycle_id);
 			ps.setString(2, app.getAppraisalCycle());
 			ps.setInt(3, app.getSno());
 			ps.setString(4, app.getCategory());

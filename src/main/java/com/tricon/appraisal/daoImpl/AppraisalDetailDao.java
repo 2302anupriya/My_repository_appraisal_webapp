@@ -70,18 +70,20 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				app.setDesignation(rs.getString("designation"));
 				app.setCyclePeriodFrom(rs.getString("cycle_period_from"));
 				app.setCyclePeriodTo(rs.getString("cycle_period_to"));
-			/*	String fromDate = rs.getString("cycle_period_from");
-				DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-				Date fromPeriod = (Date)formatter.parse(fromDate); 
-				app.setCyclePeriodFrom(fromPeriod);
-				
-				String fromDate = rs.getString("cycle_period_to");
-				DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-				Date fromPeriod = (Date)formatter.parse(fromDate); 
-				app.setCyclePeriodFrom(fromPeriod);*/
-				
-				//app.setCyclePeriodTo(rs.getString("cycle_period_to"));
-				//app.setCycleProject(rs.getString("cycle_project"));
+				/*
+				 * String fromDate = rs.getString("cycle_period_from");
+				 * DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				 * Date fromPeriod = (Date)formatter.parse(fromDate);
+				 * app.setCyclePeriodFrom(fromPeriod);
+				 * 
+				 * String fromDate = rs.getString("cycle_period_to"); DateFormat
+				 * formatter = new SimpleDateFormat("dd/MM/yyyy"); Date
+				 * fromPeriod = (Date)formatter.parse(fromDate);
+				 * app.setCyclePeriodFrom(fromPeriod);
+				 */
+
+				// app.setCyclePeriodTo(rs.getString("cycle_period_to"));
+				// app.setCycleProject(rs.getString("cycle_project"));
 				/* app.setMgrId(rs.getInt("mgr_id")); */
 
 				/*
@@ -124,8 +126,11 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 		try {
 			statement = connection.createStatement();
 
-		/*	String query = "SELECT empid,fname from employee where empid = (SELECT mgrid from employee where empid="
-					+ empid + ")";*/
+			/*
+			 * String query =
+			 * "SELECT empid,fname from employee where empid = (SELECT mgrid from employee where empid="
+			 * + empid + ")";
+			 */
 
 			/*
 			 * String query =
@@ -133,8 +138,8 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 			 * + cycleYear + "' and ac.appraisal_cycle='" + appraisalcycle +
 			 * "')";
 			 */
-			 String query = "SELECT empid,fname from employee where empid = (SELECT distinct(mgr_id) from appraisal_cycle where empid="+empid+
-                     " and appraisal_cycle='"+appraisalcycle+"')";
+			String query = "SELECT empid,fname from employee where empid = (SELECT distinct(mgr_id) from appraisal_cycle where empid="
+					+ empid + " and appraisal_cycle='" + appraisalcycle + "')";
 
 			System.out.println("Inside view manager detail");
 			/*
@@ -159,15 +164,15 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				 * mgr.setMgrNameH2(rs.getString("fname")); // mgrList.add(mgr);
 				 * System.out.println("inside view manager detail:" + mgr); }
 				 */
-			/*	mgr.setMgrIdH1(rs.getInt("empid"));
-				mgr.setMgrNameH1(rs.getString("fname"));
-				mgr.setMgrIdH2(rs.getInt("empid"));
-				mgr.setMgrNameH2(rs.getString("fname"));*/
-				
+				/*
+				 * mgr.setMgrIdH1(rs.getInt("empid"));
+				 * mgr.setMgrNameH1(rs.getString("fname"));
+				 * mgr.setMgrIdH2(rs.getInt("empid"));
+				 * mgr.setMgrNameH2(rs.getString("fname"));
+				 */
+
 				mgr.setMgrId(rs.getInt("empid"));
 				mgr.setMgrName(rs.getString("fname"));
-				
-				
 
 			}
 		} catch (SQLException e) {
@@ -233,11 +238,12 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 		return empList;
 	}
 
-	// view the manager personal appraisal detail
+	// view the personal appraisal detail for a manager
 
 	@Override
 	public List<Appraisal> viewPersonalAppraisalDetailsByEmpId(int empid)
-			throws SQLException, ClassNotFoundException, IOException, ParseException {
+			throws SQLException, ClassNotFoundException, IOException,
+			ParseException {
 		Appraisal app = null;
 		ResultSet rs = null;
 		Statement statement = null;
@@ -273,7 +279,7 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				/*
 				 * cyclePeriodFrom.substring(3); cyclePeriodTo.substring(3);
 				 */
-			
+
 				String cyclePeriodMonth = (cyclePeriodFrom.substring(3))
 						.concat(" to ").concat(cyclePeriodTo.substring(3));
 				System.out
@@ -282,10 +288,11 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				/* cyclePeriodList.add(cyclePeriod); */
 
 				// retrieval of cycle_month ends here
-				
-				String cycle_Year = (rs.getString("cycle_period_from")).substring(6);
+
+				String cycle_Year = (rs.getString("cycle_period_from"))
+						.substring(6);
 				app.setAppraisalCycle(rs.getString("appraisal_cycle"));
-				/*app.setCyclePeriodFrom(cycle_Year);*/
+				/* app.setCyclePeriodFrom(cycle_Year); */
 				app.setCycleMonth(cyclePeriodMonth);
 				appList.add(app);
 				System.out.println("inside view Personal detail:" + appList);
