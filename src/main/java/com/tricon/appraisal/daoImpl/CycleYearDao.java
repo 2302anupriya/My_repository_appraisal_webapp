@@ -27,23 +27,26 @@ public class CycleYearDao implements ICycleYearDao {
 		ResultSet rs = null;
 		try {
 			statement = connection.createStatement();
-		/*	String query = "SELECT cycle_period_from, cycle_period_to FROM appraisal_cycle WHERE empid = '"
-					+ userId + "'";*/
-			String query = "SELECT cycle_period_from, cycle_period_to FROM appraisal_cycle WHERE empid = '" + userId + "' order by cycle_period_from";
+			/*
+			 * String query =
+			 * "SELECT cycle_period_from, cycle_period_to FROM appraisal_cycle WHERE empid = '"
+			 * + userId + "'";
+			 */
+			String query = "SELECT cycle_period_from, cycle_period_to FROM appraisal_cycle WHERE empid = '"
+					+ userId + "' order by SUBSTRING(cycle_period_from, 7, 10)";
 			rs = statement.executeQuery(query);
 			while (rs.next()) {
 
 				String year_from = rs.getString("cycle_period_from");
-				String yearFrom=year_from.substring(6);
+				String yearFrom = year_from.substring(6);
 				String year_to = rs.getString("cycle_period_to");
-				String yearTo=year_to.substring(6);
+				String yearTo = year_to.substring(6);
 				String cycleYear = yearFrom.concat("-").concat(yearTo);
-				System.out.println("to retrieve the range of years"+cycleYear);
+				System.out
+						.println("to retrieve the range of years" + cycleYear);
 				yearList.add(cycleYear);
 
 			}
-
-			// System.out.println("Name="+rs.getString("name")+",country="+rs.getString("country")+",password="+rs.getString("password"));
 		} catch (SQLException e) {
 			// logger error
 			throw e;

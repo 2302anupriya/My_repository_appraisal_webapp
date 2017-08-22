@@ -138,13 +138,13 @@
 			  </div>
 			</div>
 			
-			<!-- 	<div class="text-center">
-						<input type="submit" name="viewAppraisal" class="button"
-							value="ViewAppraisal" id="viewAppraisal" />
-					</div> -->
+				<div class="text-center">
+						<input type="submit" name="addAppraisal" class="button"
+							value="AddAssAppraisal" id="addAppraisal" />
+					</div>
 					<div class="text-center">
 						<input type="submit" name="viewAssAppraisal" class="button"
-							value="AssociateAppraisal" id="viewAssAppraisal" />
+							value="ViewAssociateAppraisal" id="viewAssAppraisal" />
 					</div>
 					
 					<!-- according to new changes -->

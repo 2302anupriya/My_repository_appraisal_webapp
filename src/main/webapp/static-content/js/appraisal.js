@@ -44,7 +44,7 @@
 
 $(document).ready(function(){
 	
-	$("#cycleYear").on('change',function(){
+	$("#cycleYear").on('click',function(){
 		   if($(this).val()=="2017-2018")
 		       $("#addAppraisal").prop('disabled',false).css('opacity',1);
 		   else

@@ -48,7 +48,6 @@ public class LoginController {
 			@PathVariable("assocEmpId") int empid)
 			throws ClassNotFoundException, SQLException, IOException {
 		List<String> yearList = cycleService.getCycleYears(empid);
-		System.out.println("value of yearlist in controller from dao"+yearList);
 	/*	List<String> yearList = new ArrayList<String>();
 		System.out.println(yearList1);
 		for (int i = 0; i <= yearList1.size() - 1; i++) {

@@ -32,7 +32,6 @@ public class LoginDao implements ILoginDao {
 					+ userId + "' and password = '" + password + "'";
 			rs = statement.executeQuery(query);
 			while (rs.next()) {
-				// emp = new Employee();
 				int uid = rs.getInt("empid");
 				String pwd = rs.getString("password");
 				if (uid == userId && password.equals(pwd)) {
