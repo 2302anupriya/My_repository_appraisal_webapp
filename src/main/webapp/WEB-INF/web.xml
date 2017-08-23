@@ -4,7 +4,7 @@
 
  <web-app>
  
-  <display-name>appraisal-web-app</display-name> 
+  <display-name>appraisal</display-name> 
     
   <context-param>
         <param-name>log4j-config-location</param-name>

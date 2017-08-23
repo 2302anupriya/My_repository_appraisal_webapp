@@ -38,7 +38,7 @@ public class LoginController {
 	@Autowired
 	IAppraisalDetailService appraisalDetailService;
 
-	@RequestMapping(value = "/appraisal-app", method = RequestMethod.GET)
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String showLoginPage() {
 		return "login";
 	}
