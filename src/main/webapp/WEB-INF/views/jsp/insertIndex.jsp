@@ -66,8 +66,8 @@
 					<div class="row">
 						<div class="col-xs-4">Designation/ Title</div>
 						<div class="col-xs-4 text-center">
-							<input type="text" value="" placeholder="H1" class="input-sm"
-								name="designation" />
+							<input type="text" value="${emp.empDesignation}" placeholder="H1" class="input-sm"
+								name="empDesignation" />
 						</div>
 						<div class="col-xs-4 text-center">
 							<input type="text" value="" placeholder="H2" class="input-sm"
@@ -303,6 +303,11 @@
 							<input type="submit" name="submitAppraisal" value="submit"
 								class="bg-primary no-border" />
 						</div>
+							<div class="col-xs-2  from-button">
+							<input type="submit" name="saveAppraisal" value="save"
+								class="bg-primary no-border" />
+						</div>
+						
 
 					<!-- <div class="col-xs-2  from-button">
              <form action ="fetch.jsp">
@@ -454,8 +459,8 @@
 								name="designation3" readonly/>
 						</div>
 						<div class="col-xs-4 text-center">
-							<input type="text" value="" placeholder="H2" class="input-sm"
-								name="designation" />
+							<input type="text" value="${emp.empDesignation}" placeholder="H2" class="input-sm"
+								name="empDesignation" />
 						</div>
 					</div>
 					<div class="row">
@@ -686,6 +691,10 @@
 						</div>
 						<div class="col-xs-2  from-button">
 							<input type="submit" name="submitAppraisal" value="submit"
+								class="bg-primary no-border" />
+						</div>
+							<div class="col-xs-2  from-button">
+							<input type="submit" name="saveAppraisal" value="save"
 								class="bg-primary no-border" />
 						</div>
 

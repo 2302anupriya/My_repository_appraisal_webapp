@@ -14,14 +14,4 @@ public interface IAppraisalService {
 	public void insertAppraisalDetails(Appraisal app) throws SQLException,
 			ClassNotFoundException, IOException, ParseException;
 
-	/*
-	 * public List<Appraisal> fetchEmployeeDetails(String appCycle) throws
-	 * SQLException, ClassNotFoundException, IOException { return
-	 * ad.fetchEmployeeDetails(appCycle); }
-	 */
-
-	/*
-	 * public Appraisal fetchEmployeeDetails(Appraisal appType) { return
-	 * ad.fetchEmployeeDetails(appType); }
-	 */
 }

@@ -18,38 +18,40 @@ import com.tricon.appraisal.vo.Manager;
 @ComponentScan
 @Service
 public class AppraisalDetailServiceImpl implements IAppraisalDetailService {
-	
+
 	@Autowired
 	IAppraisalDetailDao ado;
 
-	
-	//@Override
-	public List<Appraisal> viewAppraisalDetails(String appraisalcycle, String year,  int empid) throws SQLException, ClassNotFoundException, IOException
-	{
-		return ado.viewAppraisalDetails(appraisalcycle,year,empid);
+	// @Override
+	public List<Appraisal> viewAppraisalDetails(String appraisalcycle,
+			String year, int empid) throws SQLException,
+			ClassNotFoundException, IOException {
+		return ado.viewAppraisalDetails(appraisalcycle, year, empid);
 	}
 
-	//@Override
-	public Manager viewManagerDetails(String year,  int empid, String appraisalcycle) throws SQLException, ClassNotFoundException, IOException
-	{
-		return ado.viewManagerDetails(year,empid,appraisalcycle);
+	// @Override
+	public Manager viewManagerDetails(String year, int empid,
+			String appraisalcycle) throws SQLException, ClassNotFoundException,
+			IOException {
+		return ado.viewManagerDetails(year, empid, appraisalcycle);
 	}
-	//@Override
-	public Employee viewEmployeeDetails(String year,  int empid) throws SQLException, ClassNotFoundException, IOException
-	{
-		return ado.viewEmployeeDetails(year,empid);
+
+	// @Override
+	public Employee viewEmployeeDetails(String year, int empid,
+			String appraisalcycle) throws SQLException, ClassNotFoundException,
+			IOException {
+		return ado.viewEmployeeDetails(year, empid, appraisalcycle);
 	}
-	
-	public List<Integer> fetchAssociateDetailsByMgrId(int empid) throws SQLException, ClassNotFoundException, IOException
-	{
+
+	public List<Integer> fetchAssociateDetailsByMgrId(int empid)
+			throws SQLException, ClassNotFoundException, IOException {
 		return ado.fetchAssociateDetailsByMgrId(empid);
 	}
-	
-	
-	public List<Appraisal> viewPersonalAppraisalDetailsByEmpId(int empid) throws SQLException, ClassNotFoundException, IOException, ParseException
-	{
+
+	public List<Appraisal> viewPersonalAppraisalDetailsByEmpId(int empid)
+			throws SQLException, ClassNotFoundException, IOException,
+			ParseException {
 		return ado.viewPersonalAppraisalDetailsByEmpId(empid);
 	}
-
 
 }

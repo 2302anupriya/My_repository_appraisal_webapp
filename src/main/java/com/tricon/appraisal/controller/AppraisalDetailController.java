@@ -74,7 +74,7 @@ public class AppraisalDetailController {
 			Manager manager = appraisalDetailService.viewManagerDetails(
 					yearFromValue, empid, appraisalcycle);
 			Employee employee = appraisalDetailService.viewEmployeeDetails(
-					yearFromValue, empid);
+					yearFromValue, empid, appraisalcycle);
 			System.out.println("apppraisallist:" + appraisalList);
 
 			model.addAttribute("appList", appraisalList);
@@ -133,7 +133,7 @@ public class AppraisalDetailController {
 			Manager manager = appraisalDetailService.viewManagerDetails(
 					yearFromValue, associateId, appraisalcycle);
 			Employee employee = appraisalDetailService.viewEmployeeDetails(
-					yearFromValue, associateId);
+					yearFromValue, associateId, appraisalcycle);
 			model.addAttribute("appList", appraisalList);
 			session.setAttribute("appList", appraisalList);
 			model.addAttribute("emp", employee);
@@ -194,7 +194,7 @@ public class AppraisalDetailController {
 			Manager manager = appraisalDetailService.viewManagerDetails(
 					yearFromValue, empid, appraisalcycle);
 			Employee employee = appraisalDetailService.viewEmployeeDetails(
-					yearFromValue, empid);
+					yearFromValue, empid, appraisalcycle);
 			System.out.println("apppraisallist:" + appraisalList);
 
 			// model.addAttribute("appList",appraisalList);
@@ -229,7 +229,9 @@ public class AppraisalDetailController {
 			Manager manager = appraisalDetailService.viewManagerDetails(
 					yearFromValue, empid, appraisalcycle);
 			Employee employee = appraisalDetailService.viewEmployeeDetails(
-					yearFromValue, empid);
+					yearFromValue, empid, appraisalcycle);
+
+			System.out.println("bjdsvbjsvdsvjv" + employee);
 			/*
 			 * session.setAttribute("employee", employee);
 			 * session.setAttribute("manager", manager);
@@ -247,7 +249,7 @@ public class AppraisalDetailController {
 
 	}
 
-	// below method is to submit the details into DB after additng the details
+	// below method is to submit the details into DB after adding the details
 	@RequestMapping(value = "/appraisalDetailController", method = RequestMethod.POST, params = "submitAppraisal")
 	public String handleSubmitRequest(
 			@ModelAttribute("appraisal") Appraisal appraisal,
@@ -293,6 +295,7 @@ public class AppraisalDetailController {
 			 * (),manager.getMgrId());
 			 */
 			// appraisalService.insertAppraisalDetails(appraisal,employee);
+
 			appraisalService.insertAppraisalCycleDetails(appraisal,
 					employee.getEmpName());
 			appraisalService.insertAppraisalDetails(appraisal);

@@ -46,7 +46,7 @@ public class AppraisalDao implements IAppraisalDao {
 
 			ps = connection
 					.prepareStatement(
-							"INSERT INTO Appraisal_Cycle(appraisal_cycle, cycle_period_from, cycle_period_to, cycle_project, mgr_id, created_on, updated_on, created_by, updated_by, empid, designation) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+							"INSERT INTO Appraisal_Cycle(appraisal_cycle, cycle_period_from, cycle_period_to, cycle_project, mgr_id, created_on, updated_on, created_by, updated_by, empid) VALUES (?,?,?,?,?,?,?,?,?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, app.getAppraisalCycle());
@@ -73,7 +73,7 @@ public class AppraisalDao implements IAppraisalDao {
 			ps.setString(8, empName);
 			ps.setString(9, empName);
 			ps.setInt(10, app.getEmpId());
-			ps.setString(11, app.getDesignation());
+			// ps.setString(11, app.getDesignation());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

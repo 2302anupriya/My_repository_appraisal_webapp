@@ -13,7 +13,7 @@ public class Appraisal implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String appraisalCycle;
 	private int sno;
-	private String designation;
+	//private String designation;
 	private String category;
 	private String Objectives;
 	private String Remark;
@@ -42,12 +42,12 @@ public class Appraisal implements Serializable {
 	public void setSno(int sno) {
 		this.sno = sno;
 	}
-	public String getDesignation() {
+/*	public String getDesignation() {
 		return designation;
 	}
 	public void setDesignation(String designation) {
 		this.designation = designation;
-	}
+	}*/
 	public String getCategory() {
 		return category;
 	}
@@ -147,7 +147,7 @@ public class Appraisal implements Serializable {
 	@Override
 	public String toString() {
 		return "Appraisal [appraisalCycle=" + appraisalCycle + ", sno=" + sno
-				+ ", designation=" + designation + ", category=" + category
+				+ ", category=" + category
 				+ ", Objectives=" + Objectives + ", Remark=" + Remark
 				+ ", weightage=" + weightage + ", trainingNeeds="
 				+ trainingNeeds + ", achievementSelfAsses="

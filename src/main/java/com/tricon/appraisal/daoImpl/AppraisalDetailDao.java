@@ -40,7 +40,7 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 		Connection connection = ConnectionFactory.getConnection();
 		try {
 			statement = connection.createStatement();
-			String query = "(SELECT ad.appraisal_cycle, ac.empid, ac.cycle_period_from, ac.cycle_period_to, ac.designation, ac.cycle_project, ad.category, ad.remark, ad.objectives, ad.weightage, ad.training_needs, ad.achievement_self_assesment, ad.Mgr_assesment, ad.mgr_comment, ad.performance_rating, final_assesment, ac.mgr_id FROM appraisal_detail ad, appraisal_cycle ac"
+			String query = "(SELECT ad.appraisal_cycle, ac.empid, ac.cycle_period_from, ac.cycle_period_to, ac.cycle_project, ad.category, ad.remark, ad.objectives, ad.weightage, ad.training_needs, ad.achievement_self_assesment, ad.Mgr_assesment, ad.mgr_comment, ad.performance_rating, final_assesment, ac.mgr_id FROM appraisal_detail ad, appraisal_cycle ac"
 					+ " WHERE ac.id=ad.appraisal_cycle_id and ac.empid = "
 					+ empid
 					+ " and SUBSTRING(ac.cycle_period_from,7,4)= '"
@@ -67,7 +67,7 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 				app.setFinalAsses(rs.getInt("final_assesment"));
 
 				app.setEmpId(rs.getInt("empid"));
-				app.setDesignation(rs.getString("designation"));
+				//app.setDesignation(rs.getString("designation"));
 				app.setCyclePeriodFrom(rs.getString("cycle_period_from"));
 				app.setCyclePeriodTo(rs.getString("cycle_period_to"));
 				/*
@@ -180,7 +180,7 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 	}
 
 	@Override
-	public Employee viewEmployeeDetails(String cycleYear, int empid)
+	public Employee viewEmployeeDetails(String cycleYear, int empid, String appraisalcycle)
 			throws SQLException, ClassNotFoundException, IOException {
 		Employee emp = null;
 		ResultSet rs = null;
@@ -189,13 +189,22 @@ public class AppraisalDetailDao implements IAppraisalDetailDao {
 		Connection connection = ConnectionFactory.getConnection();
 		try {
 			statement = connection.createStatement();
-			String query = "SELECT * from employee where empid=" + empid;
+			/*String query = "SELECT * from employee where empid=" + empid;*/
+			
+			String query = "(SELECT emp.empid,emp.fname, ed.designation, ed.appraisal_cycle from employee emp, employee_designation ed"
+					+ " WHERE emp.empid=ed.Id and emp.empid = "
+					+ empid
+					+ " and SUBSTRING(ed.cycle_year,1,4)= '"
+					+ cycleYear
+					+ "' and ed.appraisal_cycle = '"
+					+ appraisalcycle + "')";
 			rs = statement.executeQuery(query);
 
 			while (rs.next()) {
 				emp = new Employee();
 				emp.setEmpId(rs.getInt("empid"));
 				emp.setEmpName(rs.getString("fname"));
+				emp.setEmpDesignation(rs.getString("designation"));
 				// empList.add(emp);
 
 			}
