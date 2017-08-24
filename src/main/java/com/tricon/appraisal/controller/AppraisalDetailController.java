@@ -248,7 +248,15 @@ public class AppraisalDetailController {
 		return "insertIndex";
 
 	}
+	
+	@RequestMapping(value = "/logout")
+	public String handleLogoutRequest(HttpServletRequest request,
+			HttpSession session) throws IOException{
+		request.getSession().invalidate();
+		return "login";
+	}
 
+	
 	// below method is to submit the details into DB after adding the details
 	@RequestMapping(value = "/appraisalDetailController", method = RequestMethod.POST, params = "submitAppraisal")
 	public String handleSubmitRequest(
